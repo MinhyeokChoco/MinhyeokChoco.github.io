@@ -19,15 +19,15 @@ body {
     color: #333;
 }
 
-
 #header {
-    /* width: 100%; */
+    width: 1000px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    width: 1000px;
-    position: fixed;
     transition: color 0.3s ease;
 }
 
@@ -66,7 +66,7 @@ body {
 
 #hero>#hero-container>#hero-text {
     width: 50vw;
-    padding: 4rem 4rem 0 1rem;
+    padding: 4rem 4rem 0 0;
 }
 
 #hero>#hero-container>#hero-text>ul {
@@ -136,16 +136,22 @@ body {
 #education-list {
     display: flex;
     flex-direction: column;
-}
-
-#education-list>li>.edu-img>img {
-    padding: 1.5rem;
-    border: 1px solid #ddd;
+    gap: 5rem;
 }
 
 #education-list>li {
     display: flex;
     gap: 5rem;
+}
+
+#education-list>li>.edu-img>#img-NCP {
+    width: 30vh;
+}
+
+#education-list>li>.edu-img>#img-IT {
+    width: 30vh;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
 }
 
 #education-list>li>.edu-item {
@@ -156,10 +162,24 @@ body {
     gap: 1.5rem;
 }
 
+#education-list>li>.edu-item>#edu-name {
+    padding-left: 5vh;
+}
+
 .edu-title {
     display: block;
     font-weight: bold;
     padding-bottom: 0.6rem;
+}
+
+section>h3 {
+    padding: 0.5rem 0 1rem 0;
+}
+
+section>ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .projects {

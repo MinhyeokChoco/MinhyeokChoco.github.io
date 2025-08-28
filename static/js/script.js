@@ -3,7 +3,7 @@ const gnb = document.querySelector("#gnb");
 const hero = document.querySelector("#hero");
 const logo = header.querySelectorAll("a");
 const links = gnb.querySelectorAll("a");
-const triggerHeight = 590;
+const triggerHeight = hero.offsetHeight;
 
 document.addEventListener("DOMContentLoaded", () => {
     if (header && hero) {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateHeaderStyle() {
     logo.forEach((a) => {
-        if (window.scrollY <= triggerHeight) {
+        if (window.scrollY <= (triggerHeight - 20)) {
             a.classList.add("white");
         } else {
             a.classList.remove("white");
@@ -56,6 +56,101 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.openModalBtn');
 
     const projectDetails = {
+        4: {
+            title: 'Swen',
+            content: `
+            <h1>🏔️ Swen</h1>
+            <br>
+            <h4>📌 프로젝트 개요</h4>
+            <pre> 
+ SWEN은 사용자가 매일 아침 한눈에 주요 뉴스를 확인하고, 음성으로 들을 수 있도록 지원하는 뉴스 자동 요약·음성 재생 앱입니다.
+ 최신 AI 기술과 음성 합성(TTS)을 결합하여, 단순한 뉴스 피드 제공을 넘어 개인화된 뉴스 경험을 제공하는 것을 목표로 합니다.
+            </pre>
+            <hr>
+            <br>
+            <h4>📅 개발 기간 및 팀 구성</h4>
+            <pre> 
+ ⏺ 개발 기간 : 2025.07.10 ~ 2025.07.28 (약 3주)
+ ⏺ 인원 : 이민혁 외 3명
+ ⏺ 맡은 역할 : 프로젝트 매니저 - JWT token 연동, 일정 관리, 팀 코디네이션
+            </pre>
+            <hr>
+            <br>
+            <h4>🔹 주요 기능</h4>
+            <pre> 
+ <strong>🎵 원클릭 뉴스 재생</strong>
+  • 플레이 버튼 한 번으로 최신 뉴스 즉시 재생
+  • 주제별 뉴스 검색 및 맞춤 재생
+  • 고품질 TTS로 자연스러운 음성 제공
+
+ <strong>🤖 AI 기반 관련 뉴스 추천</strong>
+  • 현재 재생 중인 뉴스와 관련된 뉴스 3-5개 자동 추천
+  • 벡터 유사도 기반 정확한 관련성 분석
+  • 사용할수록 개선되는 개인화 추천
+
+ <strong>⚡ 실시간 자동 학습 </strong>
+  • 매일 자동으로 최신 뉴스 수집 및 벡터화
+  • 사용자 행동 패턴 학습을 통한 추천 품질 향상
+  • 콜드 스타트 문제 해결 (첫 사용자도 즉시 추천 가능)
+            </pre>
+            <hr>
+            <br>
+            <h4>🙋‍♂️ 담당 역할 및 구현 내용</h4>
+            <pre> 
+ <strong>담당 역할</strong>
+ 
+ 🗓️ 일정 관리
+  • 애자일 기반 스프린트 계획 수립 및 진행 상황 관리
+  • 매주 팀 단위 진행 상황 점검 및 리스크 관리
+  • 우선순위 정리 및 마일스톤 관리
+ 
+ 👥 팀 코디네이션
+  • 백엔드(SpringBoot) / 프론트엔드(Flutter) / AI 모델(HyperCLOVA, RAG) / 클라우드(NCP) 담당자 간 협업 조율
+  • API 스펙 정의 및 문서화 관리
+  • 이슈 발생 시 팀 간 커뮤니케이션 주도
+    
+ <strong>구현 및 결과</strong>
+ 
+ 🔐 JWT Token 기반 인증/인가 연동
+  
+  🚪 JWT 기반 로그인 인증 흐름 설계
+   • 소셜 로그인(OAuth 2.0) → 네이버 서버 인증 → JWT 토큰 발급 → 클라이언트 저장
+   • Refresh Token을 활용한 재인증 로직 설계
+
+  ⚙️ 구현 내용
+   1. Spring Security + JWT 연동
+    - spring-security-oauth2-client 사용하여 소셜 로그인 구현
+    - 로그인 성공 시 JWT Token(Access + Refresh) 발급
+   2. 데이터베이스와 연동
+    - 소셜 로그인 사용자 정보(User ID, 이메일, 닉네임 등) DB(MySQL)에 저장
+    - 신규 사용자와 기존 사용자 판별 후 사용자 테이블에 insert/update 처리
+   3. API 인증 테스트
+    - 클라이언트(Flutter)에서 로그인 요청 → JWT 발급/갱신 정상 동작 확인
+    - JWT 토큰 만료/위조 테스트 진행 (만료 시 Refresh Token 재요청 정상 동작 확인)
+    - Postman 및 통합 테스트 코드(JUnit)로 API 정상 동작 검증
+
+ 🧪 수행 결과
+  • 정상적인 소셜 로그인 및 JWT 인증 흐름 완성
+  • 로그인 성공 시 사용자 정보가 DB에 정상 저장 및 갱신됨을 확인
+  • 모바일 앱(Flutter)에서 로그인 후 JWT 기반 인증 API 호출 성공
+  • 토큰 갱신 로직 검증 완료 → 안정적인 인증/인가 프로세스 확보
+            </pre>
+            <hr>
+            <br>
+            <h4>🤔 트러블 슈팅 및 느낀 점</h4>
+            <pre> 
+ 이번 프로젝트에서 <b>처음</b>으로 Spring Boot 프레임워크를 도입하여 백엔드 개발을 진행했으며,
+ 팀 협업 효율성을 높이기 위해 IntelliJ IDEA 개발 도구 또한 <b>처음</b> 사용해보았습니다.
+ 초기에는 <b>익숙하지 않은</b> 기술 스택과 새로운 툴 환경에 <b>적응</b>하는 데 어려움이 있었으나,
+ <b>꾸준한 학습</b>과 <b>적극적인 활용</b>을 통해 빠르게 숙련할 수 있었습니다.
+ 특히, 에뮬레이터 환경에서는 정상적으로 기능이 구현되어 테스트되었으나,
+ 실제 모바일 기기에서 실행했을 때 <b>환경 차이</b>로 인해 일부 기능이 정상 동작하지 않는 <b>문제</b>를 마주했습니다.
+ 이로 인해 모바일 특성을 고려하여 네트워크, 권한, API 호출 방식 등을 다시 <b>점검</b>하고 <b>재구성</b>하는 과정을 거쳤습니다.
+ 결과적으로, 단순히 개발 환경의 차이에서 발생한 문제를 <b>해결</b>하며 케이스별 테스트와 디버깅의 중요성을 몸소 체감했으며,
+ 실제 사용자 환경에 맞춘 최적화 작업의 <b>필요성</b>을 깊이 인식하게 되었습니다.
+ 이 <b>경험</b>은 새로운 기술 학습과 현장 문제 해결 능력 향상에 큰 밑거름이 되었습니다.
+            </pre>
+            ` },
         3: {
             title: 'UPHILL',
             content: `
